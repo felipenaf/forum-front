@@ -28,7 +28,6 @@ export class DashboardComponent implements OnInit {
 
     openQuestion(param) {
         this.router.navigate([`question/${param}`])
-        // console.log(param)
     }
 
     getQuestions() {

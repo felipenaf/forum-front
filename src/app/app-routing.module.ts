@@ -4,24 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: 'feijao',
-        loadChildren: () => import('./pages/vendas/vendas.module').then(modulo => modulo.VendasModule),
+        path: '',
+        loadChildren: () => import('./pages/questions/questions.module').then(modulo => modulo.QuestionsModule),
         data: {
-            title: 'Vendas'
-        }
-    },
-    {
-        path: 'arroz',
-        loadChildren: () => import('./pages/arroz/arroz.module').then(modulo => modulo.ArrozModule),
-        data: {
-            title: 'Arroz'
+            title: 'Question'
         }
     },
     {
         path: '**',
-        redirectTo: 'login',//criar pag 404
+        loadChildren: () => import('./pages/notFound/notFound.module').then(modulo => modulo.NotFoundModule),
         data: {
-            title: 'Página não encontrada'
+            title: 'Not Found'
         }
     }
 ];

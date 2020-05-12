@@ -1,1 +1,46 @@
-<h1>olá</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mt-4">Question #{{ question.id }}</h1>
+
+            <p class="lead">
+                by {{ question.user }}
+            </p>
+
+            <hr>
+
+            <p>Posted on {{ question.creationDate | date: 'dd/MM/yyyy' }}</p>
+
+            <hr>
+
+            <p class="lead">
+                {{ question.content }}
+            </p>
+
+            <!-- Comments Form -->
+            <div class="card my-4">
+                <h5 class="card-header">Leave a Comment:</h5>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" name="user" class="form-control" placeholder="Nome">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" placeholder="Resposta"></textarea>
+                        </div>
+                        <input type="hidden" name="question" value="{id: {{ question.id }}}">
+                        <button (click)="postAnswer()" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="media mb-4" *ngFor="let data of question.answer">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0">{{ data.user }}</h5>
+                    {{ data.content }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

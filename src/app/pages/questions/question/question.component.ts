@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +13,7 @@ import { map } from 'rxjs/operators';
     styleUrls: ['./question.component.less']
 })
 export class QuestionComponent implements OnInit {
+    question: any
 
     constructor(
         private httpCliente: HttpClient,
@@ -22,21 +21,15 @@ export class QuestionComponent implements OnInit {
     ){ }
 
     ngOnInit() {
+        const url = this.router.routerState.snapshot.url
+        this.getQuestion(url)
+    }
 
-        // this.router.params.subscribe( parametros => {
-        //     if (parametros['id']) {
-        //       // faça algo aqui
-        //     }
-        //   });
+    getQuestion(url) {
+        this.httpCliente.get(`${environment.apiRoot}/${url}`).subscribe(data => {
+            this.question = data
+        })
 
-        // const rr = this.router.routerState.root.queryParams
-        const rr = this.router.routerState.root.queryParams
-        console.log(rr)
-
-        // const par = this.router.snapshot.paramMap.get('id');
-        // console.log(par);
-
-        // this.getQuestions();
     }
 
 }
