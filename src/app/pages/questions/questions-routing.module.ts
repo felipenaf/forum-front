@@ -15,8 +15,7 @@ const routes: Routes = [
         }
     },
     {
-        path: '/question',
-        // canActivate: [AuthGuard],
+        path: 'question/:id',
         component: QuestionComponent,
         data: {
             title: 'Question'

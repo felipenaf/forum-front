@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -14,10 +15,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./dashboard.component.less']
 })
 export class DashboardComponent implements OnInit {
-    questions: Object
+    questions: any
 
     constructor(
-        private httpCliente: HttpClient
+        private httpCliente: HttpClient,
+        private router: Router
     ){ }
 
     ngOnInit() {
@@ -25,18 +27,20 @@ export class DashboardComponent implements OnInit {
     }
 
     openQuestion(param) {
-        console.log(param)
+        this.router.navigate([`question/${param}`])
+        // console.log(param)
     }
 
     getQuestions() {
         this.httpCliente.get(`${environment.apiRoot}/question`).subscribe(data => {
-            data.map(function(e) {
+            this.questions = data
+
+            this.questions.map(function(e) {
                 e.answer = e.answer.length
+                console.log(e)
             })
 
-            console.log(data)
-
-            this.questions = data;
+            console.log(this.questions)
         })
 
     }
