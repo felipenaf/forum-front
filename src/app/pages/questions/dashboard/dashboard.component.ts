@@ -1,76 +1,44 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-interface Alert {
-  type: string;
-  message: string;
-}
-
-const ALERTS: Alert[] = [{
-  type: 'success',
-  message: 'Olá Sucesso',
-}, {
-  type: 'info',
-  message: 'This is an info alert',
-}, {
-  type: 'warning',
-  message: 'This is a warning alert',
-}, {
-  type: 'danger',
-  message: 'This is a danger alert',
-}, {
-  type: 'primary',
-  message: 'This is a primary alert',
-}, {
-  type: 'secondary',
-  message: 'This is a secondary alert',
-}, {
-  type: 'light',
-  message: 'This is a light alert',
-}, {
-  type: 'dark',
-  message: 'This is a dark alert',
-}
-];
-
+@Injectable({
+    providedIn: 'root'
+})
 @Component({
-  selector: 'bc-dashboard-vendas',
+  selector: 'bc-dashboard-questions',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less']
 })
 export class DashboardComponent implements OnInit {
+    questions: Object
 
-  constructor() {
-    this.reset();
-  }
+    constructor(
+        private httpCliente: HttpClient
+    ){ }
 
-  ngOnInit() {
-    // this.getUsers();
-  }
+    ngOnInit() {
+        this.getQuestions();
+    }
 
-  alerts: Alert[];
+    openQuestion(param) {
+        console.log(param)
+    }
 
-  close(alert: Alert) {
-    console.log("Teste")
+    getQuestions() {
+        this.httpCliente.get(`${environment.apiRoot}/question`).subscribe(data => {
+            data.map(function(e) {
+                e.answer = e.answer.length
+            })
 
-    this.alerts.splice(this.alerts.indexOf(alert), 1);
-  }
+            console.log(data)
 
-  reset() {
-    this.alerts = Array.from(ALERTS);
-  }
+            this.questions = data;
+        })
 
-  teste(message) {
-    //   http
-    alert(message)
-  }
-
-  // getUsers() {
-  //   this.authService.getUsers()
-  //   .subscribe(
-  //     itens => {
-  //       console.log('itens', itens);
-  //     }
-  //   );
-  // }
+    }
 
 }

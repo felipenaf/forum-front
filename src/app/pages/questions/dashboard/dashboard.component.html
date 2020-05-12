@@ -1,14 +1,19 @@
-<p *ngFor="let alert of alerts">
-  <!-- <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert> -->
-  <span>
+<!-- <button (click)="getQuestions()" >teste</button> -->
+<div class="container">
+    <div class="row" >
+        <div class="col-md-3"></div>
 
-    Olá {{ alert.message }}
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li (click)="openQuestion(data.id)" *ngFor="let data of questions" class="list-group-item">
+                    <small>{{ data.user }}</small><br>
+                    <span>{{ data.content }}</span><br>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M15 1H6c-.55 0-1 .45-1 1v2H1c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h1v3l3-3h4c.55 0 1-.45 1-1V9h1l3 3V9h1c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zM9 11H4.5L3 12.5V11H1V5h4v3c0 .55.45 1 1 1h3v2zm6-3h-2v1.5L11.5 8H6V2h9v6z"></path></svg>
+                    <small> {{ data.answer }} respostas</small>
+                </li>
+            </ul>
+        </div>
 
-  </span>
-
-  <button (click)="teste(alert.message)" >teste!</button>
-</p>
-
-<p>
-  <button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
-</p>
+        <div class="col-md-3"></div>
+    </div>
+</div>
