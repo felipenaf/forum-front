@@ -1,5 +1,4 @@
-# Forum
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+# Forum  
 
 ## Requisitos
 
@@ -22,4 +21,5 @@ A porta padrão do Angular é a 4200 caso queira uma porta diferente executar`ng
 
 ## Nota
 
-Acabei criando o front end no angular apenas pra ter um interface que consumisse a API, mas infelizmente não foi possível deixar do jeito que eu gostaria. A aplicação ficou o mais simples possível.
+Acabei criando o front end no angular apenas pra ter um interface que consumisse a [API](https://github.com/felipenaf/forum), mas infelizmente não foi possível deixar do jeito que eu gostaria. A aplicação ficou o mais simples possível.
+
