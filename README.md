@@ -12,11 +12,11 @@ Ter o Angular CLI;
 
 Após clonar o projeto, acessar a raiz pelo terminal e executar os seguintes comandos em sequência:
 
--- `npm install`
+- `npm install`
 
--- Caso não tenha o Angular CLI (`npm install -g @angular/cli`)
+- Caso não tenha o Angular CLI (`npm install -g @angular/cli`)
 
--- `ng serve`
+- `ng serve`
 
 ## Observações
 
