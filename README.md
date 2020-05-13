@@ -1,4 +1,6 @@
-# Forum  
+# Forum
+
+Aplicação desenvolvida para um desafio com Angular.
 
 ## Requisitos
 
@@ -19,8 +21,3 @@ Após clonar o projeto, acessar a raiz pelo terminal e executar os seguintes com
 ## Observações
 
 A porta padrão do Angular é a 4200 caso queira uma porta diferente executar`ng serve --port 4201`.
-
-## Nota
-
-Acabei criando o front end no angular apenas pra ter um interface que consumisse a [API](https://github.com/felipenaf/forum), mas infelizmente não foi possível deixar do jeito que eu gostaria. A aplicação ficou o mais simples possível.
-
