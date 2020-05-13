@@ -1,6 +1,6 @@
 # Forum
 
-Aplicação desenvolvida para um desafio com Angular.
+Aplicação desenvolvida para um desafio com Angular para consumir a [API](https://github.com/felipenaf/forum) do Forum
 
 ## Requisitos
 
