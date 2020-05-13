@@ -3,6 +3,7 @@
 ## Requisitos
 
 Ter o gerenciador de pacotes `npm`;
+
 Ter o Angular CLI;
 
 ## Inciar a aplicação
