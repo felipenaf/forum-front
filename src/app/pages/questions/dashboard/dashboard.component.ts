@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -16,14 +17,24 @@ import { map } from 'rxjs/operators';
 })
 export class DashboardComponent implements OnInit {
     questions: any
+    error: string
+    questionForm: FormGroup
+    urlQuestion = `${environment.apiRoot}/question`
 
     constructor(
         private httpCliente: HttpClient,
+        private formBuilder: FormBuilder,
         private router: Router
     ){ }
 
     ngOnInit() {
         this.getQuestions();
+
+        this.questionForm = this.formBuilder.group({
+            user: [""],
+            content: [""]
+        });
+
     }
 
     openQuestion(param) {
@@ -31,15 +42,47 @@ export class DashboardComponent implements OnInit {
     }
 
     getQuestions() {
-        this.httpCliente.get(`${environment.apiRoot}/question`).subscribe(data => {
+        this.questions = []
+
+        this.httpCliente.get(this.urlQuestion)
+        .subscribe(data => {
             this.questions = data
 
             this.questions.map(function(e) {
                 e.answer = e.answer.length
-                console.log(e)
             })
 
-            console.log(this.questions)
+        },
+        error =>{
+            if (error.status == 404) {
+                this.error = "O forum não possui nenhuma pergunta ainda"
+            }
+
+        })
+
+    }
+
+    postQuestion() {
+        const user = this.questionForm.get('user').value;
+        const content = this.questionForm.get('content').value;
+
+        const body = JSON.parse(
+            `{
+                "content": "${content}",
+                "user": "${user}"
+            }`
+        );
+
+        if (user.length == 0 || content.length == 0) {
+            alert("Preencha seu nome e a resposta")
+            return false
+        }
+
+        this.httpCliente.post(this.urlQuestion, body)
+        .subscribe(() => {
+            this.questions.unshift({content, user})
+            this.questionForm.get('user').setValue("")
+            this.questionForm.get('content').setValue("")
         })
 
     }

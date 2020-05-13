@@ -16,7 +16,6 @@ import { map } from 'rxjs/operators';
 })
 export class QuestionComponent implements OnInit {
     question: any
-    retorno: any
     answerForm: FormGroup
     url = this.router.routerState.snapshot.url
 
@@ -27,6 +26,7 @@ export class QuestionComponent implements OnInit {
     ){ }
 
     ngOnInit() {
+        this.question = []
         this.getQuestion(this.url)
 
         var id_question = this.url.split("/")[2]
