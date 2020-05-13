@@ -1,27 +1,25 @@
-# Bomcontrole
-
+# Forum
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Ter o gerenciador de pacotes `npm`;
+Ter o Angular CLI;
 
-## Code scaffolding
+## Inciar a aplicação
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Após clonar o projeto, acessar a raiz pelo terminal e executar os seguintes comandos em sequência:
 
-## Build
+-- `npm install`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+-- Caso não tenha o Angular CLI (`npm install -g @angular/cli`)
 
-## Running unit tests
+-- `ng serve`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Observações
 
-## Running end-to-end tests
+A porta padrão do Angular é a 4200 caso queira uma porta diferente executar`ng serve --port 4201`.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Nota
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Acabei criando o front end no angular apenas pra ter um interface que consumisse a API, mas infelizmente não foi possível deixar do jeito que eu gostaria. A aplicação ficou o mais simples possível.
