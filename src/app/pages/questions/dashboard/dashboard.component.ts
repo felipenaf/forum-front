@@ -17,6 +17,7 @@ import { map } from 'rxjs/operators';
 })
 export class DashboardComponent implements OnInit {
     questions: any
+    returnPost: any
     error: string
     questionForm: FormGroup
     urlQuestion = `${environment.apiRoot}/question`
@@ -79,8 +80,10 @@ export class DashboardComponent implements OnInit {
         }
 
         this.httpCliente.post(this.urlQuestion, body)
-        .subscribe(() => {
-            this.questions.unshift({content, user})
+        .subscribe((data) => {
+            this.returnPost = data
+
+            this.questions.unshift({id: this.returnPost.id, content, user, answer: 0})
             this.questionForm.get('user').setValue("")
             this.questionForm.get('content').setValue("")
         })

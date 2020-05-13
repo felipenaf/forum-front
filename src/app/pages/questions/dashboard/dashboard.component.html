@@ -36,8 +36,8 @@
         <div class="col-md-2"></div>
     </div>
 
-    <div *ngIf="questions.length == 0; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
+    <div *ngIf="questions.length == 0; then vazio else lista"></div>
+    <ng-template #vazio>
         <div class="row">
             <div class="col-md-2"></div>
 
@@ -49,7 +49,7 @@
         </div>
     </ng-template>
 
-    <ng-template #elseBlock>
+    <ng-template #lista>
         <div class="row" *ngFor="let data of questions" >
             <div class="col-md-2"></div>
 

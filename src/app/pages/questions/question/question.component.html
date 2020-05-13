@@ -1,7 +1,17 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
-            <h1 class="mt-4">{{ question.content }}</h1>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <h2 class="mt-4">{{ question.content }}</h2>
+                </div>
+                <div class="col-md-1 mt-5">
+                    <a href="javascript:;" (click)="redirectQuestions()">
+                        Voltar
+                    </a>
+                </div>
+            </div>
 
             <p class="lead">
                 por {{ question.user }}

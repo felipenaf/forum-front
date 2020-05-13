@@ -75,4 +75,8 @@ export class QuestionComponent implements OnInit {
 
     }
 
+    redirectQuestions() {
+        this.router.navigate([''])
+    }
+
 }
