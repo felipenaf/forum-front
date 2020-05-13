@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  paginaInicial: 'vendas',
-  apiRoot: 'http://127.0.0.1:8080', // http://192.168.0.111:82/#/login -> novoconvidado_0310@yopmail.com
+  paginaInicial: 'forum',
+  apiRoot: 'http://127.0.0.1:8080',
 };
 
 /*

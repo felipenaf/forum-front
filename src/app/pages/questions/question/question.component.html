@@ -1,35 +1,46 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
-            <h1 class="mt-4">Question #{{ question.id }}</h1>
+            <h1 class="mt-4">{{ question.content }}</h1>
 
             <p class="lead">
-                by {{ question.user }}
+                por {{ question.user }}
             </p>
 
             <hr>
 
-            <p>Posted on {{ question.creationDate | date: 'dd/MM/yyyy' }}</p>
+            <p>Postado em {{ question.creationDate | date: 'dd/MM/yyyy' }}</p>
 
             <hr>
 
-            <p class="lead">
-                {{ question.content }}
-            </p>
-
-            <!-- Comments Form -->
             <div class="card my-4">
-                <h5 class="card-header">Leave a Comment:</h5>
+                <h5 class="card-header">Deixe um comentário:</h5>
                 <div class="card-body">
-                    <form>
+                    <form class="user" [formGroup]="answerForm" (submit)="postAnswer()">
                         <div class="form-group">
-                            <input type="text" name="user" class="form-control" placeholder="Nome">
+                          <input
+                            formControlName="user"
+                            type="text"
+                            class="form-control form-control-user"
+                            placeholder="Nome">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" placeholder="Resposta"></textarea>
+                          <input
+                            formControlName="content"
+                            type="content"
+                            class="form-control form-control-user"
+                            placeholder="Responda a pergunta">
                         </div>
-                        <input type="hidden" name="question" value="{id: {{ question.id }}}">
-                        <button (click)="postAnswer()" class="btn btn-primary">Submit</button>
+                        <input
+                            type="hidden"
+                            name="question"
+                            formControlName="question">
+                        <button
+                          [disabled]="answerForm.invalid"
+                          type="submit"
+                          class="btn btn-primary btn-user btn-block">
+                          Submit
+                        </button>
                     </form>
                 </div>
             </div>

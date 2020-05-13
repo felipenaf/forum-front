@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -14,15 +16,56 @@ import { Router } from '@angular/router';
 })
 export class QuestionComponent implements OnInit {
     question: any
+    retorno: any
+    answerForm: FormGroup
+    url = this.router.routerState.snapshot.url
 
     constructor(
         private httpCliente: HttpClient,
+        private formBuilder: FormBuilder,
         private router: Router
     ){ }
 
     ngOnInit() {
-        const url = this.router.routerState.snapshot.url
-        this.getQuestion(url)
+        this.getQuestion(this.url)
+
+        var id_question = this.url.split("/")[2]
+
+        this.answerForm = this.formBuilder.group({
+            user: [""],
+            content: [""],
+            question: [`${id_question}`]
+        });
+
+    }
+
+    postAnswer() {
+        const user = this.answerForm.get('user').value;
+        const content = this.answerForm.get('content').value;
+        const id_question = this.answerForm.get('question').value;
+
+        const body = JSON.parse(
+            `{
+                "content": "${content}",
+                "user": "${user}",
+                "question": {
+                    "id": ${id_question}
+                }
+            }`
+        );
+
+        if (user.length == 0 || content.length == 0) {
+            alert("Preencha seu nome e a resposta")
+            return false
+        }
+
+        this.httpCliente.post(`${environment.apiRoot}/answer`, body)
+        .subscribe(() => {
+            this.question.answer.unshift({content, user})
+            this.answerForm.get('user').setValue("")
+            this.answerForm.get('content').setValue("")
+        })
+
     }
 
     getQuestion(url) {

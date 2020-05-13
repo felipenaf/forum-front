@@ -6,6 +6,7 @@ import { QuestionsRoutingModule } from './questions-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { QuestionComponent } from './question/question.component';
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { AuthService } from 'src/app/@core/auth/auth.service';
 
 @NgModule({
@@ -14,7 +15,9 @@ import { HttpClientModule } from "@angular/common/http";
     CommonModule,
     QuestionsRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     // AuthService
