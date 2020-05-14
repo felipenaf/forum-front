@@ -7,7 +7,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { QuestionComponent } from './question/question.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { AuthService } from 'src/app/@core/auth/auth.service';
 
 @NgModule({
   declarations: [ DashboardComponent, QuestionComponent ],
@@ -18,9 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     ReactiveFormsModule
-  ],
-  providers: [
-    // AuthService
   ]
 })
 export class QuestionsModule { }

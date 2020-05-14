@@ -4,7 +4,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NotFoundRoutingModule } from './notFound-routing.module';
 import { NotFoundComponent } from './index/notFound.component';
-// import { AuthService } from 'src/app/@core/auth/auth.service';
 
 @NgModule({
   declarations: [ NotFoundComponent ],
@@ -12,9 +11,6 @@ import { NotFoundComponent } from './index/notFound.component';
     CommonModule,
     NotFoundRoutingModule,
     NgbModule
-  ],
-  providers: [
-    // AuthService
   ]
 })
 export class NotFoundModule { }
