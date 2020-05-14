@@ -15,7 +15,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
     questions: any
-    returnPost: any
     error: string
     questionForm: FormGroup
     urlQuestion = `${environment.apiRoot}/question`
@@ -44,20 +43,18 @@ export class DashboardComponent implements OnInit {
         this.questions = []
 
         this.httpCliente.get(this.urlQuestion)
-        .subscribe(data => {
-            this.questions = data
+        .subscribe(
+            (data: any) => {
+                data.map((e) => e.answer = e.answer.length)
+                this.questions = data
+            },
+            (error) => {
+                if (error.status == 404) {
+                    this.error = "O forum não possui nenhuma pergunta ainda"
+                }
 
-            this.questions.map(function(e) {
-                e.answer = e.answer.length
-            })
-
-        },
-        error =>{
-            if (error.status == 404) {
-                this.error = "O forum não possui nenhuma pergunta ainda"
             }
-
-        })
+        )
 
     }
 
@@ -78,13 +75,13 @@ export class DashboardComponent implements OnInit {
         }
 
         this.httpCliente.post(this.urlQuestion, body)
-        .subscribe((data) => {
-            this.returnPost = data
-
-            this.questions.unshift({id: this.returnPost.id, content, user, answer: 0})
-            this.questionForm.get('user').setValue("")
-            this.questionForm.get('content').setValue("")
-        })
+        .subscribe(
+            (data: any) => {
+                this.questions.unshift({id: data.id, content, user, answer: 0})
+                this.questionForm.get('user').setValue("")
+                this.questionForm.get('content').setValue("")
+            }
+        )
 
     }
 
