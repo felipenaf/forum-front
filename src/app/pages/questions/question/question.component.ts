@@ -68,12 +68,15 @@ export class QuestionComponent implements OnInit {
     }
 
     getQuestion(url) {
-        this.httpCliente.get(`${environment.apiRoot}/${url}`).subscribe(data => {
-            this.question = data
-        },
-        error => {
-            this.router.navigate(['notFound'])
-        })
+        this.httpCliente.get(`${environment.apiRoot}/${url}`)
+        .subscribe(
+            (data: any) => {
+                this.question = data
+            },
+            error => {
+                this.router.navigate(['notFound'])
+            }
+        )
 
     }
 
